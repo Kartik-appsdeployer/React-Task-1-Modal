@@ -23,7 +23,7 @@ const EmployeeContextProvider = (props) => {
     return (
 
         //Yaha se humne persons ko as a value uski children ko provide kr diya hai
-        <EmployeeContext.Provider value={{ persons, addNew }}>
+        <EmployeeContext.Provider value={{ persons, addNew, setPersons }}>
             {props.children}
         </EmployeeContext.Provider>
     )

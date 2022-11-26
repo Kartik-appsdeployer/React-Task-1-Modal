@@ -1,18 +1,55 @@
 import Employees from './Employees';
 import AddEmp from './AddEmp';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {Modal, Button} from 'react-bootstrap';
 import { EmployeeContext } from '../context/EmployeeContext'
 const EmployeeList = () => {
 
     // Yaha pe context ko import krke is component mein use kr liya
     // And jab bhi contexts ke objects mein kuch change hoga, useContext use re-render kr dega
-    const { persons } = useContext(EmployeeContext)
+    const { persons, setPersons } = useContext(EmployeeContext)
 
     const [view, setView] = useState(false);
 
     const handleView = () => setView(true);
     const handleClose = () => setView(false);
+
+    useEffect(() => {
+        handleClose()
+        // alert("Added the value")
+    }, [persons])
+
+    // Yaha se sorting funtionality hai
+    const [order, setOrder] = useState('ASC');
+    const Sorting = (COL)=>{
+
+        // Ye condition, jab useState mein Ascending set hoga, matlb user 
+        // ko data ascending order mein chahiye hoga tab
+        if(order === "ASC"){
+            const sorted = [...persons].sort((a, b)=>
+            a[COL].toLowerCase() > b[COL].toLowerCase() ? 1 : -1
+            )
+        setPersons(sorted);
+        setOrder("DESC")
+        document.getElementById('Name').innerHTML = 'Name &#8593;&darr;'
+        document.getElementById('Course').innerHTML = 'Course &#8593;&darr;'
+        document.getElementById('Email').innerHTML = 'Email &#8593;&darr;'
+        }
+
+        // Ye condition, jab useState mein Descending set hoga, matlb user 
+        // ko data descending order mein chahiye hoga tab
+        if(order === "DESC"){
+            const sorted = [...persons].sort((a, b)=>
+            a[COL].toLowerCase() < b[COL].toLowerCase() ? 1 : -1
+            )
+        setPersons(sorted);
+        setOrder("ASC")
+        console.log(order)
+        document.getElementById('Name').innerHTML = 'Name &darr;&#8593;'
+        document.getElementById('Course').innerHTML = 'Course &darr;&#8593;'
+        document.getElementById('Email').innerHTML = 'Email &darr;&#8593;'
+        }
+    }
 
     return (
         <>
@@ -29,9 +66,9 @@ const EmployeeList = () => {
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Course</th>
-                        <th>Email</th>
+                        <th id='Name' onClick={() => Sorting('name')} style={{cursor: 'pointer'}}>Name &darr;&#8593;</th>
+                        <th id='Course' onClick={() => Sorting('course')} style={{cursor: 'pointer'}}>Course &darr;&#8593;</th>
+                        <th id='Email' onClick={() => Sorting('email')} style={{cursor: 'pointer'}}>Email &darr;&#8593;</th>
                     </tr>
                 </thead>
                 <tbody>
