@@ -47,8 +47,15 @@ body {
     padding-left: 25px;
     font-family: 'Roboto', sans-serif;
     border-radius: 41px;
-    background: blue;
+    background: #33334c;
     font-weight: bold;
+}
+.table-title .btn:hover{
+	box-shadow: 20px 20px 50px grey;
+	padding-top: 13px;
+    padding-bottom: 13px;
+    padding-right: 27px;
+    padding-left: 27px;
 }
 .table-title .btn i {
 	float: left;
