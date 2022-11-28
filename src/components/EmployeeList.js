@@ -31,6 +31,7 @@ const EmployeeList = () => {
             )
         setPersons(sorted);
         setOrder("DESC")
+        console.log(order)
         document.getElementById('Name').innerHTML = 'Name &#8593;&darr;'
         document.getElementById('Course').innerHTML = 'Course &#8593;&darr;'
         document.getElementById('Email').innerHTML = 'Email &#8593;&darr;'
@@ -69,6 +70,7 @@ const EmployeeList = () => {
                         <th id='Name' onClick={() => Sorting('name')} style={{cursor: 'pointer'}}>Name &darr;&#8593;</th>
                         <th id='Course' onClick={() => Sorting('course')} style={{cursor: 'pointer'}}>Course &darr;&#8593;</th>
                         <th id='Email' onClick={() => Sorting('email')} style={{cursor: 'pointer'}}>Email &darr;&#8593;</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -61,9 +61,13 @@ body {
 }
 table.table tr th, table.table tr td {
 	border-color: #363434;
-	padding: 12px 15px;
-	vertical-align: middle;
+    padding: 12px 15px;
+    vertical-align: middle;
 }
+table i{
+	cursor: pointer;
+}
+
 
 table.table tr th:last-child {
 	width: 100px;
